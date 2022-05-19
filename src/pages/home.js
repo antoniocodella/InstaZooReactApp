@@ -1,3 +1,11 @@
+import { Card } from "../component/Card";
+import { Topbar } from "../component/Topbar";
+
 export function Home() {
-  return <h1 className="text-3xl font-bold m-20">ciao</h1>;
+  return (
+    <div>
+      <Topbar />
+      <Card />
+    </div>
+  );
 }
