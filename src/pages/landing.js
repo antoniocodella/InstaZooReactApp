@@ -14,7 +14,7 @@ export function Landing() {
         />
       </figure>
 
-      <div className="w-full flex h-[45%]">
+      <div className="w-full flex  h-[45%]">
         <div className="flex flex-col basis-2/4 p-8">
           <h1 className="scrittalogo">IMMERZOO</h1>
           <h2 className="sottoscritta mt-8 ml-36 ">DIVERTIMENTO ASSICURATO</h2>
