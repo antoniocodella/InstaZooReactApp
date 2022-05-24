@@ -1,9 +1,10 @@
-import { Home } from "./pages/Home";
+import { Home } from "./pages"; 
+import { Landing } from "./pages/Landing";
 
 export function App() {
   return (
     <div>
-      <Home />
+      <Landing />
     </div>
   );
 }
