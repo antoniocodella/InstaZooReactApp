@@ -1,5 +1,3 @@
-import monkey from "../assets/monkey.png";
-
 export function Card({animal}) {
   return (
     <div className="w-[20%] bg-[#242424] border border-[#242424] text-white ">

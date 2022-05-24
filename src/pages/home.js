@@ -1,6 +1,7 @@
 import { Topbar } from "../component/Topbar";
 import Cards from "../component/Cards";
 import { useState, useEffect } from "react";
+import CardDetail from "../component/CardDetail";
 
 export function Home() {
   const [data, setData] = useState(null);
@@ -18,8 +19,8 @@ export function Home() {
   return (
     <div>
       <Topbar />
-      {data && <Cards animals={data}/>}
-      
+      {data && <Cards animals={data} />}
+      <CardDetail animals={data} />
     </div>
   );
 }
