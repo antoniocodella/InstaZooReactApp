@@ -2,33 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-.logo{
-    transform: translate(-50%, -50%);
+.logo {
+  transform: translate(-50%, -50%);
 }
 
-
-.detail{
-    overflow: hidden;
-    transform: translate(-50%, -50%);
-    background-color: #393737;
-    border-radius: 15px;
-    box-sizing: border-box;    
+.detail {
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  background-color: #393737;
+  border-radius: 15px;
+  box-sizing: border-box;
 }
-.scrittalogo{
-    font-family: 'Cinzel decorative', cursive;
-    font-size: 5rem;
-        color: red;
-        font-weight: 600;
-}
-
-.sottoscritta{
-    font-family: 'Cinzel', serif;
-    font-size: 2.3rem;
-
+.logo-text {
+  font-family: "Cinzel decorative", cursive;
+  font-size: 3rem;
+  color: red;
+  font-weight: 600;
 }
 
+.sub-logo-text {
+  font-family: "Cinzel", serif;
+  font-size: 1.5rem;
+}
 
 .bg-change {
   width: 100%;
@@ -37,9 +32,9 @@
   top: 0px;
   background: rgba(196, 196, 196, 0.4);
   position: fixed;
-    overflow: hidden;
+  overflow: hidden;
 }
 
-.close-img{
-    fill: white;
+.close-img {
+  fill: white;
 }

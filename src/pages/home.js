@@ -1,19 +1,41 @@
 import { Topbar } from "../component/Topbar";
 import Cards from "../component/Cards";
-import { useState, useEffect ,useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import CardDetail from "../component/CardDetail";
+import { Footer } from "../component/Footer";
+import Like from "../component/Like";
 
 export function Home() {
   const [data, setData] = useState(null);
-  const [openDetails, SetOpenDetails] = useState(false);
-  const [product, setProduct] = useState();
+  const [openDetails, setOpenDetails] = useState(false);
+  const [singleCard, setSingleCard] = useState();
+  const [newArray, setNewArray] = useState([]);
 
-   const handleDetail =(product) => {
-    SetOpenDetails(true);
-    setProduct(product);
+  const [openCart, setOpenCart] = useState(false);
+  const [cartProducts, setCartProducts] = useState();
+
+  const cartOpen = useCallback((products) => {
+    setOpenCart(true);
+    setCartProducts(products);
+  }, []);
+  const closeCart = useCallback(() => {
+    setOpenCart(false);
+  }, []);
+
+  const addToCart = (product) => {
+    setNewArray(() => [...newArray, ...product]);
   };
-    const closeDetail =() => {
-    SetOpenDetails(false);
+
+  const removeToCart = (productToRemove) => {
+    setNewArray(newArray.filter((product) => product !== productToRemove));
+  };
+
+  const handleDetail = (singleCard) => {
+    setOpenDetails(true);
+    setSingleCard(singleCard);
+  };
+  const closeDetail = () => {
+    setOpenDetails(false);
   };
 
   useEffect(() => {
@@ -23,24 +45,36 @@ export function Home() {
         setData(json);
       });
   }, []);
-    const setBg = openDetails  ? "bg-change" : "";
+  const setBg = openDetails ? "bg-change" : "";
   console.log(data);
 
   return (
-    <div className="bg-[#3c3c3c]">
-      <Topbar />
-      {data && <Cards product={product} handleDetail={handleDetail} data={data} />}
-          <div
-        id='bg-cards'
-        className={setBg} 
-      ></div>
-          {openDetails && (
+    <div className="bg-[#3c3c3c] h-[100%] ">
+      <Topbar cartOpen={cartOpen} singleCard={singleCard} like={newArray} />
+      {openCart && (
+        <Like
+          newArray={newArray}
+          closeCart={closeCart}
+          removeToCart={removeToCart}
+        />
+      )}
+
+      {data && (
+        <Cards
+          singleCard={singleCard}
+          handleDetail={handleDetail}
+          data={data}
+        />
+      )}
+      <div id="bg-cards" className={setBg}></div>
+      {openDetails && (
         <CardDetail
-          product={product}
+          singleCard={singleCard}
+          addToCart={addToCart}
           closeDetail={closeDetail}
         />
       )}
+      <Footer />
     </div>
-
   );
 }
