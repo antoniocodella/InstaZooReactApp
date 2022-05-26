@@ -7,6 +7,15 @@
 .logo{
     transform: translate(-50%, -50%);
 }
+
+
+.detail{
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+    background-color: #393737;
+    border-radius: 15px;
+    box-sizing: border-box;    
+}
 .scrittalogo{
     font-family: 'Cinzel decorative', cursive;
     font-size: 5rem;
@@ -20,3 +29,17 @@
 
 }
 
+
+.bg-change {
+  width: 100%;
+  height: 100vh;
+  left: 0px;
+  top: 0px;
+  background: rgba(196, 196, 196, 0.4);
+  position: fixed;
+    overflow: hidden;
+}
+
+.close-img{
+    fill: white;
+}

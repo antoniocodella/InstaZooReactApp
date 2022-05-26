@@ -6,5 +6,5 @@ export function App() {
     <div>
       <Home />
     </div>
-  );
+  )
 }

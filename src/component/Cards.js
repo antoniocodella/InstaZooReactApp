@@ -1,18 +1,14 @@
-import React from 'react'
-import {Card} from "../component/Card"
+import React from "react";
+import { Card } from "../component/Card";
+import CardDetail from "./CardDetail";
 
-export default function Cards({animals}) {
-
-    const cardsToRender = animals.map((animal) => {
-       return <Card key={animal.id} animal={animal}  />
-    })
-
+export default function Cards({ product, data, handleDetail }) {
+  const cardsToRender =  data.map((animal) => (
+    <Card product={product} handleDetail={handleDetail} key={animal.id} animal={animal}/>
+  ));
 
 
-  return (
-    <div>
-        {cardsToRender}
-    </div>
-  )
+  return <div className="flex flex-wrap flex justify-between  ">
+    {cardsToRender}
+    </div>;
 }
-
