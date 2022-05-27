@@ -7,28 +7,17 @@ import Like from "../component/Like";
 
 export function Home() {
   const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch(`https://zoo-animal-api.herokuapp.com/animals/rand/${8}`)
+      .then((response) => response.json())
+      .then((json) => {
+        setData(json);
+      });
+  }, []);
+
   const [openDetails, setOpenDetails] = useState(false);
   const [singleCard, setSingleCard] = useState();
-  const [newArray, setNewArray] = useState([]);
-
-  const [openCart, setOpenCart] = useState(false);
-  const [cartProducts, setCartProducts] = useState();
-
-  const cartOpen = useCallback((products) => {
-    setOpenCart(true);
-    setCartProducts(products);
-  }, []);
-  const closeCart = useCallback(() => {
-    setOpenCart(false);
-  }, []);
-
-  const addToCart = (product) => {
-    setNewArray(() => [...newArray, ...product]);
-  };
-
-  const removeToCart = (productToRemove) => {
-    setNewArray(newArray.filter((product) => product !== productToRemove));
-  };
 
   const handleDetail = (singleCard) => {
     setOpenDetails(true);
@@ -38,24 +27,43 @@ export function Home() {
     setOpenDetails(false);
   };
 
-  useEffect(() => {
-    fetch(`https://zoo-animal-api.herokuapp.com/animals/rand/${8}`)
-      .then((response) => response.json())
-      .then((json) => {
-        setData(json);
-      });
+  const [newArray, setNewArray] = useState([]);
+  const [openLike, setOpenLike] = useState(false);
+  const [cartAnimal, setCartAnimal] = useState();
+
+  const likeOpen = useCallback((animal) => {
+    setOpenLike(true);
+    setCartAnimal(animal);
   }, []);
-  const setBg = openDetails ? "bg-change" : "";
+
+  const closeLike = useCallback(() => {
+    setOpenLike(false);
+  }, []);
+
+  const addToLike = (animal) => {
+    const control = newArray.find((animals) => animals.name === animal.name);
+    if (control === undefined) {
+      setNewArray(() => [...newArray, { ...animal }]);
+    } else {
+      setNewArray(newArray.filter((animals) => animal.name !== animals.name));
+    }
+  };
+
+  const removeToLike = (animalToRemove) => {
+    setNewArray(newArray.filter((animal) => animal !== animalToRemove));
+  };
+
+  const setBg = openDetails || openLike ? "bg-change" : "";
   console.log(data);
 
   return (
-    <div className="bg-[#3c3c3c] h-[100%] ">
-      <Topbar cartOpen={cartOpen} singleCard={singleCard} like={newArray} />
-      {openCart && (
+    <div className={"bg-[#3c3c3c] h-[100%]"}>
+      <Topbar likeOpen={likeOpen} singleCard={singleCard} like={newArray} />
+      {openLike && (
         <Like
           newArray={newArray}
-          closeCart={closeCart}
-          removeToCart={removeToCart}
+          closeLike={closeLike}
+          removeToLike={removeToLike}
         />
       )}
 
@@ -66,11 +74,16 @@ export function Home() {
           data={data}
         />
       )}
-      <div id="bg-cards" className={setBg}></div>
+      <div
+        onClick={openDetails ? closeDetail : openLike ? closeLike : null}
+        id="bg-cards"
+        className={setBg}
+      ></div>
       {openDetails && (
         <CardDetail
+          like={newArray}
           singleCard={singleCard}
-          addToCart={addToCart}
+          addToLike={addToLike}
           closeDetail={closeDetail}
         />
       )}

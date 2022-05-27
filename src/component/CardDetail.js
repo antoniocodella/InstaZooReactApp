@@ -1,8 +1,15 @@
 import React from "react";
 import heart from "../assets/heart.svg";
+import heartred from "../assets/heart-red.svg";
 import closeBtn from "../assets/close.svg";
+import Like from "./Like";
 
-export default function CardDetail({ singleCard, closeDetail, addToCart }) {
+export default function CardDetail({
+  like,
+  singleCard,
+  closeDetail,
+  addToLike,
+}) {
   return (
     <div className="detail  flex  w-[750px] h-[500px] z-10  absolute top-[50%] left-[50%]">
       <div className="desc flex">
@@ -31,10 +38,14 @@ export default function CardDetail({ singleCard, closeDetail, addToCart }) {
             <img className="w-[25px] h-[25px]" src={closeBtn}></img>
           </a>
           <a
-            onClick={() => addToCart(singleCard)}
+            onClick={() => addToLike(singleCard)}
             className="heart-outer absolute bottom-[20px] left-[248px] w-[100%] "
           >
-            <img className="heart w-[30px] h-[30px]  " src={heart}></img>
+            {like.find((animal) => animal.name === singleCard.name) ? (
+              <img className=" w-[30px] h-[30px]  " src={heartred}></img>
+            ) : (
+              <img className=" w-[30px] h-[30px]  " src={heart}></img>
+            )}
           </a>
         </div>
       </div>

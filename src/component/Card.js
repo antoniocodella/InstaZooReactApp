@@ -1,8 +1,8 @@
 import CardDetail from "./CardDetail";
-export function Card({ animal, handleDetail, singleCard }) {
+export function Card({ animal, handleDetail }) {
   return (
     <>
-      <div className=" flex flex-col w-[20%] box-border bg-[#242424] border-[2px] border-[#000000] text-white m-6 h-[400px] ">
+      <div className=" flex flex-col w-[20%]  box-border bg-[#242424] border-[2px] border-[#000000] text-white m-6 h-[400px] ">
         <div className="h-[60%]">
           <img
             src={animal.image_link}
