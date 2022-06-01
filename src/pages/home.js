@@ -7,6 +7,11 @@ import Like from "../component/Like";
 
 export function Home() {
   const [data, setData] = useState(null);
+  const [openDetails, setOpenDetails] = useState(false);
+  const [singleCard, setSingleCard] = useState();
+  const [favCards, setFavCards] = useState([]);
+  const [openLike, setOpenLike] = useState(false);
+  const [cartAnimal, setCartAnimal] = useState();
 
   useEffect(() => {
     fetch(`https://zoo-animal-api.herokuapp.com/animals/rand/${8}`)
@@ -16,9 +21,6 @@ export function Home() {
       });
   }, []);
 
-  const [openDetails, setOpenDetails] = useState(false);
-  const [singleCard, setSingleCard] = useState();
-
   const handleDetail = (singleCard) => {
     setOpenDetails(true);
     setSingleCard(singleCard);
@@ -26,10 +28,6 @@ export function Home() {
   const closeDetail = () => {
     setOpenDetails(false);
   };
-
-  const [newArray, setNewArray] = useState([]);
-  const [openLike, setOpenLike] = useState(false);
-  const [cartAnimal, setCartAnimal] = useState();
 
   const likeOpen = useCallback((animal) => {
     setOpenLike(true);
@@ -41,16 +39,16 @@ export function Home() {
   }, []);
 
   const addToLike = (animal) => {
-    const control = newArray.find((animals) => animals.name === animal.name);
+    const control = favCards.find((animals) => animals.id === animal.id);
     if (control === undefined) {
-      setNewArray(() => [...newArray, { ...animal }]);
+      setFavCards(() => [...favCards, { ...animal }]);
     } else {
-      setNewArray(newArray.filter((animals) => animal.name !== animals.name));
+      setFavCards(favCards.filter((animals) => animal.id !== animals.id));
     }
   };
 
   const removeToLike = (animalToRemove) => {
-    setNewArray(newArray.filter((animal) => animal !== animalToRemove));
+    setFavCards(favCards.filter((animal) => animal.id !== animalToRemove.id));
   };
 
   const setBg = openDetails || openLike ? "bg-change" : "";
@@ -58,10 +56,10 @@ export function Home() {
 
   return (
     <div className={"bg-[#3c3c3c] h-[100%]"}>
-      <Topbar likeOpen={likeOpen} singleCard={singleCard} like={newArray} />
+      <Topbar likeOpen={likeOpen} singleCard={singleCard} like={favCards} />
       {openLike && (
         <Like
-          newArray={newArray}
+          favCards={favCards}
           closeLike={closeLike}
           removeToLike={removeToLike}
         />
@@ -81,7 +79,7 @@ export function Home() {
       ></div>
       {openDetails && (
         <CardDetail
-          like={newArray}
+          like={favCards}
           singleCard={singleCard}
           addToLike={addToLike}
           closeDetail={closeDetail}

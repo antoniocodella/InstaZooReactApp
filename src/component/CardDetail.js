@@ -23,14 +23,15 @@ export default function CardDetail({
           <h3 className="text-white text-[25px] pt-8 pr-6 pl-6">
             {singleCard.name}
           </h3>
-          <p className="text-white  text-[15px] pr-6 pl-6	 pt-8">
-            Lorem ipsum book. It has survived not only five centuries, but also
-            the leap into electronic typesetting, remaining essentially
-            unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently
-            with desktop publishing software like Aldus PageMaker including
-            versions of Lorem Ipsum.
-          </p>
+          <div className="text-white  text-[15px] pr-6 pl-6	 pt-8">
+            <p>- Active Time: {singleCard.active_time}</p>
+            <p>- Animal Type: {singleCard.animal_type}</p>
+            <p>- Diet: {singleCard.diet}</p>
+            <p>- Weight Max: {singleCard.weight_max}</p>
+            <p>- Weight Min: {singleCard.weight_min}</p>
+            <p>- Geo Range: {singleCard.geo_range}</p>
+            <p>- Habitat: {singleCard.habitat}</p>
+          </div>
           <a
             className="absolute top-[15px]  left-[255px] w-[100%]"
             onClick={closeDetail}

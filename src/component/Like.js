@@ -1,11 +1,11 @@
 import React from "react";
 import basket from "../assets/basket.svg";
 
-export default function Like({ newArray, closeLike, removeToLike }) {
+export default function Like({ favCards, closeLike, removeToLike }) {
   return (
     <div className="like-container bg-[#3C3C3C] p-4 text-white flex flex-col gap-2 top-[50%] left-[50%] z-10">
       <h2 className="text-xl">Preferiti</h2>
-      {newArray.map((el, i) => {
+      {favCards.map((el, i) => {
         return (
           <>
             <div
