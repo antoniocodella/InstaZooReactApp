@@ -44,6 +44,68 @@
   background: rgba(196, 196, 196, 0.4);
   position: fixed;
 }
+
 .close-img {
   fill: white;
+}
+
+.search-bar {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-inputs {
+  display: flex;
+}
+
+.search-inputs input {
+  display: flex;
+  width: 14.96rem;
+  border: none;
+  border-bottom: 2px solid red;
+  background-color: transparent;
+  color: white;
+  padding-left: 15px;
+}
+
+*:focus {
+  outline: none;
+}
+
+.search-inputs input::placeholder {
+  padding-left: 15px;
+  font-size: 16.5px;
+}
+
+.dataResult {
+  border-radius: 0px 0px 10px 10px;
+  background-color: rgb(79, 79, 79);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 3.4rem;
+  padding: 25px 35px;
+  box-sizing: border-box;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.dataResult li {
+  padding: 5px;
+}
+
+.dataResult li a {
+  cursor: pointer;
+  color: white;
+}
+
+.dataResult li a:hover {
+  color: red;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.close-search {
+  width: 30px;
+  height: 30px;
 }
