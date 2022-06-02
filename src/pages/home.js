@@ -1,9 +1,9 @@
 import { Topbar } from "../component/Topbar";
-import Cards from "../component/Cards";
 import { useState, useEffect, useCallback } from "react";
 import CardDetail from "../component/CardDetail";
 import { Footer } from "../component/Footer";
 import Like from "../component/Like";
+import { Card } from "../component/Card";
 
 export function Home() {
   const [data, setData] = useState(null);
@@ -66,12 +66,13 @@ export function Home() {
       )}
 
       {data && (
-        <Cards
-          singleCard={singleCard}
-          handleDetail={handleDetail}
-          data={data}
-        />
+        <div className="flex flex-wrap flex justify-between h-[85%] ">
+          {data.map((animal) => (
+            <Card handleDetail={handleDetail} key={animal.id} animal={animal} />
+          ))}
+        </div>
       )}
+
       <div
         onClick={openDetails ? closeDetail : openLike ? closeLike : null}
         id="bg-cards"
